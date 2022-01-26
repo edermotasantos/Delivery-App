@@ -2,14 +2,15 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 // import rockGlass from './images/rockGlass.svg';
-import ProductsClient from './pages/ProductsClient';
+import CustomerProducts from './pages/CustomerProducts';
 
 function App() {
   return (
     <Routes>
       <Route
         exact
-        element={ ProductsClient }
+        path="/customer/products"
+        element={ CustomerProducts }
       />
     </Routes>
   );
