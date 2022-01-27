@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(9,2),
       allowNull: false,
     },
-    deliveryAdress: {
+    deliveryAddress: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
@@ -29,16 +29,18 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     saleDate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     status: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      defaultValue: 'Pendente',
     },
   },
   {
-    timestamps: false,
+    updatedAt: false,
+    createdAt: 'saleDate',
     tableName: 'Sales',
     underscored: true,
   });
