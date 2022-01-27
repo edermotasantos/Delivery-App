@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ErrorLogin from '../components/ErrorLogin';
-import { doLogin } from '../services/endpointAPI';
-import validateEmail from '../validations/validateEmail';
+import ErrorLogin from '../../components/ErroLogin';
+import { doLogin } from '../../services/endpointAPI';
+import validateEmail from '../../validations/validateEmail';
 
 const messageError = 'Login e/ou senha inválidos';
 const testId = 'common_login__element-invalid-email';
