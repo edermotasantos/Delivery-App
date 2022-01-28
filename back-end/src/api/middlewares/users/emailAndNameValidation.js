@@ -1,4 +1,4 @@
-const { User } = require('../../database/models');
+const { User } = require('../../../database/models');
 
 const EMAIL_ALREAD_EXISTS = {
   message: 'Email already registered',

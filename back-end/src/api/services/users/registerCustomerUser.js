@@ -1,4 +1,4 @@
-const { User } = require('../../database/models');
+const { User } = require('../../../database/models');
 
 module.exports = async (name, email, password) => {
   const newUser = {
