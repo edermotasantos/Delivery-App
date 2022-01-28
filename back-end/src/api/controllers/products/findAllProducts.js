@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const { ReasonPhrases } = require('http-status-codes/build/cjs/reason-phrases');
-const Product = require('../services/product');
+const Product = require('../../services/product');
 
 const findAllProducts = async (_req, res) => {
   try {

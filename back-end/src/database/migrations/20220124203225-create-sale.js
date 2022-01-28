@@ -35,7 +35,7 @@ module.exports = {
         field: 'total_price',
         allowNull: false,
       },
-      deliveryAdress: {
+      deliveryAddress: {
         type: Sequelize.STRING(100),
         field: 'delivery_address',
         allowNull: false,
@@ -46,13 +46,14 @@ module.exports = {
         allowNull: false,
       },
       saleDate: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.DATE,
         field: 'sale_date',
         allowNull: false,
       },
       status: {
         type: Sequelize.STRING(50),
         allowNull: false,
+        defaultValue: 'Pendente',
       },
     });
   },
