@@ -1,12 +1,12 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
+import { ProductCard } from '../components/ProductCard';
 
-function ProductsClient() {
+export default function CustomerProducts() {
   return (
     <>
-      <NavBar />  
+      <NavBar />
+      <ProductCard />
     </>
   );
-};
-
-export default ProductsClient
+}
