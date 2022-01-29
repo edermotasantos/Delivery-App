@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import OrderCard from '../../components/OrderCard';
+import CustomerOrderCard from '../../components/CustomerOrderCard';
 import SalesContext from '../../utils/SalesContext/SalesContext';
 
-function OrderPage() {
+function CustomerOrderPage() {
   const { orders } = useContext(SalesContext);
 
   return (
@@ -17,7 +17,7 @@ function OrderPage() {
             status,
           } = order;
           return (
-            <OrderCard
+            <CustomerOrderCard
               key={ id }
               orderNumber={ id }
               orderDate={ saleDate }
@@ -32,4 +32,4 @@ function OrderPage() {
   );
 }
 
-export default OrderPage;
+export default CustomerOrderPage;
