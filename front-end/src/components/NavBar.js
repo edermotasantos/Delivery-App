@@ -5,16 +5,24 @@ export default function NavBar() {
     <div>
       <div
         data-testid="customer_products__element-navbar-link-products"
-      >PRODUTOS</div>
+      >
+        PRODUTOS
+      </div>
       <div
         data-testid="customer_products__element-navbar-link-orders"
-      >MEUS PEDIDOS</div>
-      <div 
+      >
+        MEUS PEDIDOS
+      </div>
+      <div
         data-testid="customer_products__element-navbar-user-full-name"
-      >Cicrano da Silva</div>
+      >
+        Cicrano da Silva
+      </div>
       <div
         data-testid="customer_products__element-navbar-link-logout"
-      >Sair</div>
+      >
+        Sair
+      </div>
     </div>
   );
 }
