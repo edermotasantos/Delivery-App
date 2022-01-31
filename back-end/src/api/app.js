@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
-const err = require('./middlewares/error');
 const path = require('path');
+const err = require('./middlewares/error');
 
 const productsRouter = require('./controllers/products/router');
 

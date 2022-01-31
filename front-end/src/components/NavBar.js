@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function NavBar() {
   return (
@@ -8,5 +8,5 @@ export default function NavBar() {
       <div>Cicrano da Silva</div>
       <div>Sair</div>
     </div>
-  )
-};
+  );
+}

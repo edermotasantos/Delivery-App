@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
-import ContextProduct from "../context/ContextProducts";
+import React, { useContext } from 'react';
+import ContextProduct from '../utils/ProductsContext/ProductsContext';
 
+const ProductCard = () => {
+  const {
+    products,
+    increment,
+    decrement,
+    handleChange,
+  } = useContext(ContextProduct);
 
-function ProductCard() {
-  const { products } = useContext(ContextProduct);
-  return ( 
-    products.map(({ id, price, urlImage, name, }) => (
+  return (
+    products.map(({ id, price, urlImage, name, count }) => (
       <div key={ id }>
         <div>
           <p data-testid={ `customer_products__element-card-price-${id}` }>
@@ -25,28 +30,31 @@ function ProductCard() {
         <div>
           <button
             id={ id }
-            data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
+            onClick={ (e) => decrement(e) }
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
           >
             -
           </button>
           <input
             id={ id }
             type="number"
-            value="0"
+            value={ count }
+            onChange={ (e) => handleChange(e) }
             data-testid={ `customer_products__input-card-quantity--${id}` }
           />
           <button
             id={ id }
             data-testid={ `customer_products__button-card-add-item--${id}` }
             type="button"
+            onClick={ (e) => increment(e) }
           >
             +
           </button>
         </div>
       </div>
     ))
-  )
+  );
 };
 
 export default ProductCard;
