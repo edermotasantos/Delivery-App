@@ -5,14 +5,17 @@ import SalesContext from './SalesContext';
 
 function Provider({ children }) {
   const [orders, setOrders] = useState([]);
+  const [orderById, setOrderById] = useState({});
+  const [id, setId] = useState(0);
   const contextValue = {
     orders,
+    setId,
+    orderById,
   };
 
   useEffect(() => {
     const fetchOrders = async () => {
       const response = await axios.get('http://localhost:3001/sales');
-      console.log(response.data);
       setOrders(response.data);
     };
     try {
@@ -21,6 +24,19 @@ function Provider({ children }) {
       console.log(e);
     }
   }, []);
+
+  useEffect(() => {
+    const fetchOrderById = async (orderId) => {
+      const response = await axios.get(`http://localhost:3001/sales/${orderId}`);
+      setOrderById(response.data);
+    };
+    try {
+      if (!id) return null;
+      fetchOrderById(id);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [id]);
 
   return (
     <SalesContext.Provider value={ contextValue }>

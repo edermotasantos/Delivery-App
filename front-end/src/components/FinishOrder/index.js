@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCheckout from './ProductCheckout';
+import ProductCheckout from '../ProductCheckout';
 // import storeContext from 'storeContext';
 
 const FinishOrder = () => {

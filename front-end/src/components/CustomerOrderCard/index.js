@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './orderCard.css';
 
-function OrderCard({ orderNumber, status, orderDate, total, index }) {
+function CustomerOrderCard({ orderNumber, status, orderDate, total, index }) {
   return (
     <Link className="order-card" to={ `/customer/orders/${orderNumber}` }>
       <div>
@@ -27,7 +27,7 @@ function OrderCard({ orderNumber, status, orderDate, total, index }) {
   );
 }
 
-OrderCard.propTypes = {
+CustomerOrderCard.propTypes = {
   orderNumber: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   orderDate: PropTypes.string.isRequired,
@@ -35,4 +35,4 @@ OrderCard.propTypes = {
   index: PropTypes.number.isRequired,
 };
 
-export default OrderCard;
+export default CustomerOrderCard;
