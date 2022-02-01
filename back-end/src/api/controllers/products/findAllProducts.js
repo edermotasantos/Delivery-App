@@ -6,7 +6,7 @@ const findAllProducts = async (_req, res) => {
   try {
     const products = await Product.findAllProducts();
     res.status(StatusCodes.OK).json({ result: products });
-  } catch (err) {
+  } catch (e) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ReasonPhrases);
   }
 };
