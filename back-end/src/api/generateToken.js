@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
-const { getSecretKey } = require('./getSecretKey');
+const getSecret = require('./getSecret');
 
 const generateToken = ({ email, role }) => {
-  const JWT_SECRET = getSecretKey();
+  const JWT_SECRET = getSecret();
   return jwt.sign({ email, role }, JWT_SECRET, { expiresIn: '7d' });
 };
 

@@ -1,17 +1,24 @@
 const jwt = require('jsonwebtoken');
-const path = require('path');
-const fs = require('fs');
+const { StatusCodes } = require('http-status-codes');
 const getSecret = require('../../getSecret');
 
-const validateToken = (req, _res, next) => {
+const TOKEN_NOT_FOUND = {
+  message: 'Token not found',
+};
+
+const EXPIRED_OR_INVALID_TOKEN = {
+  message: 'Expired or invalid token',
+};
+
+const validateToken = (req, res, next) => {
   try {
     const { authorization: token } = req.headers;
-    if (!token) next({ code: 401, message: 'Token not found' });
+    if (!token) res.status(StatusCodes.UNAUTHORIZED).json(TOKEN_NOT_FOUND);
     const decodedToken = jwt.verify(token, getSecret);
     req.token = decodedToken;
     next();
   } catch (e) {
-    next({ code: 401, message: 'Expired or invalid token' });
+    res.status(StatusCodes.UNAUTHORIZED).json(EXPIRED_OR_INVALID_TOKEN);
   }
 };
   
