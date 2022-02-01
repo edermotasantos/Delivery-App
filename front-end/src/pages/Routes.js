@@ -18,6 +18,7 @@ export default function Rout() {
       <Route path="/" element={ <Navigate replace to="/login" /> } />
       <Route path="/customer/checkout" element={ <CustomerCheckout /> } />
       <Route path="customer/products" element={ <CustomerProducts /> } />
+      <Route path="/customer/checkout" element={ <CustomerCheckout /> } />
       <Route path="/customer/orders" element={ <CustomerOrderPage /> } />
       <Route path="/customer/orders/:id" element={ <CustomerOrderPageDetail /> } />
       <Route path="/seller/orders" element={ <SellerOrderPage /> } />

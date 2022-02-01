@@ -14,7 +14,8 @@ const ProductCard = () => {
       <div key={ id }>
         <div>
           <p data-testid={ `customer_products__element-card-price-${id}` }>
-            { `R$ ${price}` }
+            R$
+            { price }
           </p>
           <img
             data-testid={ `customer_products__img-card-bg-image-${id}` }
