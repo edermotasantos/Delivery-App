@@ -9,8 +9,13 @@ const api = axios.create({
 });
 
 export const doLogin = async (email, password) => {
-  const result = await api.post('/users/login', { email, password });
-  return result.data;
+  try {
+    const result = await api.post('/users/login', { email, password });
+    return result.data;
+  } catch (e) {
+    console.log(e.message);
+    return e;
+  }
 };
 
 export const getUserByEmail = async (userEmail) => {

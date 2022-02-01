@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define("Product", {
+  const product = sequelize.define("product", {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-    tableName: 'Products',
+    tableName: 'products',
     underscored: true,
   });
 
-  return Product;
+  return product;
 };

@@ -1,4 +1,4 @@
-const { User } = require('../../../database/models');
+const { user } = require('../../../database/models');
 
 module.exports = async (name, email, password) => {
   const newUser = {
@@ -8,5 +8,5 @@ module.exports = async (name, email, password) => {
     role: 'customer',
   };
 
-  return User.create(newUser);
+  return user.create(newUser);
 };

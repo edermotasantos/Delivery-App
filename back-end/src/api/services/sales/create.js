@@ -1,18 +1,18 @@
 const Sequelize = require('sequelize');
 
-const { Sale, SalesProducts } = require('../../../database/models');
+const { sale, salesProducts } = require('../../../database/models');
 
 const config = require('../../../database/config/config').development;
 
 const sequelize = new Sequelize(config);
 
-const create = async (sale) => sequelize.transaction(async (transaction) => {
-  const { products, ...saleWithoutProducts } = sale;
-  const saleCreated = await Sale.create(saleWithoutProducts, { transaction });
+const create = async (newSale) => sequelize.transaction(async (transaction) => {
+  const { products, ...saleWithoutProducts } = newSale;
+  const saleCreated = await sale.create(saleWithoutProducts, { transaction });
 
   await Promise.all(
     products
-    .map(async ({ id: productId, quantity }) => SalesProducts
+    .map(async ({ id: productId, quantity }) => salesProducts
     .create({ saleId: saleCreated.id, productId, quantity }, { transaction })),
   );
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import md5 from 'md5';
 import ErrorLogin from '../../components/ErroLogin';
 import { doLogin } from '../../services/endpointAPI';
 import validateEmail from '../../validations/validateEmail';
@@ -11,14 +12,26 @@ const invalidPassword = 'common_login__input-password';
 const testIdBtnLogin = 'common_login__button-login';
 const testIdBtnRegister = 'common_login__button-register';
 
+const urlByUserType = {
+  administrator: '/admin/manage',
+  customer: '/customer/products',
+  seller: '/seller/orders',
+};
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginButton, setLoginButton] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(true);
+  const navigate = useNavigate();
 
   const clickLoginButton = async () => {
-    await doLogin(email, password);
+    const response = await doLogin(email, md5(password));
+    if (!response.message) {
+      setErrorMessage(true);
+      return navigate(urlByUserType[response.role]);
+    }
+    setErrorMessage(false);
   };
 
   useEffect(() => {
@@ -74,7 +87,7 @@ export default function Login() {
           </button>
         </Link>
       </form>
-      <div hidden="MSG de erro vai aqui">
+      <div hidden={ errorMessage }>
         <ErrorLogin dataTestIdError={ testId } message={ messageError } />
       </div>
     </div>
