@@ -20,7 +20,7 @@ function CustomerOrderCard({ orderNumber, status, orderDate, total, index }) {
       <div>
         <p data-testid={ `customer_orders__element-order-date-${index}` }>{orderDate}</p>
         <p>
-          {`R$ ${total}`}
+          {`R$ ${(Math.round(total * 100) / 100).toFixed(2)}`}
         </p>
       </div>
     </Link>

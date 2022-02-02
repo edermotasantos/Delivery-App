@@ -14,7 +14,7 @@ export default function UserProvider({ children }) {
       axios.get('http://localhost:3001/products')
         .then((res) => {
           const { result } = res.data;
-          return result;
+          setProducts(result);
         });
     } catch (e) {
       console.error(e.message);
@@ -23,11 +23,7 @@ export default function UserProvider({ children }) {
   };
 
   useEffect(() => {
-    const getProducts = (async () => {
-      await fetchProducts();
-    });
-    const newProducts = getProducts();
-    setProducts(newProducts);
+    fetchProducts();
     setTotalPrice(0);
   }, []);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './OrderInfo.css';
 
-const statusLinter = 'status';
+const statusId = 'customer_order_details__element-order-details-label-delivery-status';
 
 function OrderInfo({ orderId, seller, orderDate, status }) {
   return (
@@ -23,9 +23,7 @@ function OrderInfo({ orderId, seller, orderDate, status }) {
         {orderDate}
       </p>
       <p
-        data-testid={
-          `customer_order_details__element-order-details-label-delivery-${statusLinter}`
-        }
+        data-testid={ statusId }
       >
         { status }
       </p>

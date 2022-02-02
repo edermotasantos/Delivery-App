@@ -25,12 +25,12 @@ function OrderDetailTable({ products }) {
           { quantity }
         </td>
         <td
-          data-testid={ `customer_order_details__element-order-total-price-${index}` }
+          data-testid={ `customer_order_details__element-order-table-sub-total-${index}` }
         >
           { (Math.round(price * 100) / 100).toFixed(2) }
         </td>
         <td
-          data-testid={ `customer_order_details__element-order-table-sub-total-${index}` }
+          data-testid={ `customer_order_details__element-order-total-price-${index}` }
         >
           { (Math.round(price * quantity * 100) / 100).toFixed(2) }
         </td>
