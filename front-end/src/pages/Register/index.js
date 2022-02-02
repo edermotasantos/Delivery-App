@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import md5 from 'md5';
 
 import { registerCustomerUser } from '../../services/endpointAPI';
 
@@ -20,7 +21,10 @@ function Register() {
   };
 
   const handleSubmit = async () => {
-    const content = await registerCustomerUser({ name, email, password });
+    const passwordHash = md5(password);
+    const content = await registerCustomerUser(
+      { name, email, password: passwordHash },
+    );
 
     if (content.message) {
       const errorMessage = document.querySelector('#error');
@@ -29,7 +33,7 @@ function Register() {
       return true;
     }
 
-    return navigate('/login');
+    return navigate('/customer/products');
   };
 
   useEffect(() => {
@@ -56,7 +60,7 @@ function Register() {
               minLength={ 12 }
               placeholder="Seu Nome"
               name="name"
-              onChange={ ({ target }) => setName(target.value) }
+              onChange={ ({ target: { value } }) => setName(value) }
               data-testid="common_register__input-name"
             />
           </label>
@@ -67,7 +71,7 @@ function Register() {
               required
               placeholder="seu-email@site.com.br"
               name="email"
-              onChange={ ({ target }) => setMail(target.value) }
+              onChange={ ({ target: { value } }) => setMail(value) }
               data-testid="common_register__input-email"
             />
           </label>
@@ -79,7 +83,7 @@ function Register() {
               minLength={ 6 }
               placeholder="Sua Senha"
               name="password"
-              onChange={ ({ target }) => setPassword(target.value) }
+              onChange={ ({ target: { value } }) => setPassword(value) }
               data-testid="common_register__input-password"
             />
           </label>
