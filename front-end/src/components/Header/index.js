@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function NavBar() {
+export default function Header() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const clearStorage = () => localStorage.removeItem('user');
 
   return (
-    <div>
+    <header>
       <Link
         data-testid="customer_products__element-navbar-link-products"
-        to="/products"
+        to="/customer/products"
       >
         PRODUTOS
       </Link>
@@ -33,6 +33,6 @@ export default function NavBar() {
       >
         Sair
       </Link>
-    </div>
+    </header>
   );
 }

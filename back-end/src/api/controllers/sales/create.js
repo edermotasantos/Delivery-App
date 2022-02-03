@@ -1,7 +1,6 @@
 const saleService = require('../../services/sales');
 
 const create = async (req, res) => {
-  req.user = { id: 3 }; // mock
   const { id: userId } = req.user;
 
   const {

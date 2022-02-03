@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import SalesContext from '../../utils/SalesContext/SalesContext';
 import OrderDetailTable from '../../components/OrderDetailTable';
 import OrderInfo from '../../components/OrderInfo';
-import NavBar from '../../components/NavBar';
+import Header from '../../components/Header';
 
 function CustomerOrderPageDetail() {
   const { id } = useParams();
@@ -24,7 +24,7 @@ function CustomerOrderPageDetail() {
     } = orderById;
     return (
       <>
-        <NavBar />
+        <Header />
         <main>
           <h2>Detalhe do Pedido</h2>
           <OrderInfo

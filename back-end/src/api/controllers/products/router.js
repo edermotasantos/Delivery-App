@@ -1,7 +1,10 @@
-const router = require('express').Router();
+const express = require('express');
+const rescue = require('express-rescue');
 
-const findAllProducts = require('./findAllProducts');
+const getAll = require('./getAll');
 
-router.get('/', findAllProducts);
+const router = express.Router({ mergeParams: true });
+
+router.get('/', rescue(getAll));
 
 module.exports = router;

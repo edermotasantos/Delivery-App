@@ -1,32 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ProductCheckout from '../ProductCheckout';
-// import storeContext from 'storeContext';
+import ProductsContext from '../../utils/ProductsContext/ProductsContext';
+import formatPrice from '../../helpers';
 
 const FinishOrder = () => {
-  // const { products, totalPrice, setProducts } = useContext(storeContext);
-  const products = [
-    {
-      name: 'Skol Lata 250ml',
-      price: 2.20,
-      quantity: 3,
-    },
-    {
-      name: 'Heineken 600ml',
-      price: 7.50,
-      quantity: 2,
-    },
-    {
-      name: 'Antarctica Pilsen 300ml',
-      price: 2.49,
-      quantity: 4,
-    },
-  ]; // mock
-
-  const totalPrice = 31.56; // mock
+  const { cart, totalPrice, setCart } = useContext(ProductsContext);
 
   const onDelete = (productName) => {
-    setProducts(
-      products.filter((product) => product.name !== productName),
+    setCart(
+      cart.filter((product) => product.name !== productName),
     );
   };
 
@@ -46,11 +28,11 @@ const FinishOrder = () => {
         </thead>
         <tbody>
           {
-            products.map((product, index) => (
+            cart.map((product, index) => (
               <ProductCheckout
                 product={ { ...product, index } }
                 onDelete={ onDelete }
-                key={ index }
+                key={ product.id }
               />
             ))
           }
@@ -61,7 +43,7 @@ const FinishOrder = () => {
               colSpan={ 2 }
               data-testid="customer_checkout__element-order-total-price"
             >
-              { `Total: ${totalPrice}` }
+              { formatPrice(totalPrice) }
             </td>
           </tr>
         </tfoot>

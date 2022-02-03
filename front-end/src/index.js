@@ -4,14 +4,17 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import App from './App';
-import Provider from './utils/SalesContext/Provider';
+import SalesContextProvider from './utils/SalesContext/Provider';
+import ProductsContextProvider from './utils/ProductsContext/Provider';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider>
-        <App />
-      </Provider>
+      <SalesContextProvider>
+        <ProductsContextProvider>
+          <App />
+        </ProductsContextProvider>
+      </SalesContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),

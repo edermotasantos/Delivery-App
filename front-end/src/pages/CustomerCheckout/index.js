@@ -1,11 +1,11 @@
 import React from 'react';
 import DetailsAndAddress from '../../components/DetailsAndAddress';
 import FinishOrder from '../../components/FinishOrder';
-// import Header from '../components/Header';
+import Header from '../../components/Header';
 
 const CustomerCheckout = () => (
   <>
-    {/* <Header /> */}
+    <Header />
     <main>
       <FinishOrder />
       <DetailsAndAddress />

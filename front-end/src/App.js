@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Routes from './pages/Routes';
 import Provider from './utils/ProductsContext/Provider';
 

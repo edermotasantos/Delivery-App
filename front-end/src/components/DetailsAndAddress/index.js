@@ -1,47 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import storeContext from 'storeContext';
-// import sellersContext from 'sellersContext';
+import ProductsContext from '../../utils/ProductsContext/ProductsContext';
+
 const ENDPOINT_SALES = 'http://localhost:3001/sales';
 
 const DetailsAndAddress = () => {
-  // const { totalPrice, sellers, token, products } = useContext(storeContext);
+  const { totalPrice, sellers, cart } = useContext(ProductsContext);
   const navigate = useNavigate();
 
-  const totalPrice = 31.56; // mock
-  const token = 'empty'; // mock
-  const sellers = [
-    {
-      id: 2,
-      name: 'Fulana Pereira',
-    },
-    {
-      id: 3,
-      name: 'Fulana Pereira2',
-    },
-  ]; // mock
-
-  const products = [
-    {
-      id: 1,
-      name: 'Skol Lata 250ml',
-      price: 2.20,
-      quantity: 3,
-    },
-    {
-      id: 2,
-      name: 'Heineken 600ml',
-      price: 7.50,
-      quantity: 2,
-    },
-    {
-      id: 3,
-      name: 'Antarctica Pilsen 300ml',
-      price: 2.49,
-      quantity: 4,
-    },
-  ]; // mock
+  const { token } = JSON.parse(localStorage.getItem('user'));
 
   const [addressDetails, setAddressDetails] = useState({
     sellerId: sellers[0].id,
@@ -62,7 +30,7 @@ const DetailsAndAddress = () => {
       deliveryAddress: addressDetails.address,
       deliveryNumber: addressDetails.addressNumber,
       totalPrice,
-      products,
+      products: cart,
     };
 
     const { data } = await axios.post(
@@ -120,7 +88,12 @@ const DetailsAndAddress = () => {
             data-testid="customer_checkout__input-addressNumber"
           />
         </label>
-        <button type="submit">Finalizar Pedido</button>
+        <button
+          type="submit"
+          data-testid="customer_checkout__button-submit-order"
+        >
+          Finalizar Pedido
+        </button>
       </form>
     </section>
   );

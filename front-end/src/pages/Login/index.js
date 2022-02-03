@@ -28,6 +28,7 @@ export default function Login() {
   const clickLoginButton = async () => {
     const response = await doLogin(email, md5(password));
     if (!response.message) {
+      localStorage.setItem('user', JSON.stringify(response));
       setErrorMessage(true);
       return navigate(urlByUserType[response.role]);
     }

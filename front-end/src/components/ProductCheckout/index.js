@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import formatPrice from '../../helpers';
+
 const ProductCheckout = (
   { product: { index, name, price, quantity }, onDelete },
 ) => {
@@ -9,32 +11,32 @@ const ProductCheckout = (
   return (
     <tr>
       <td
-        data-testid="customer_checkout__element-order-table-item-number-"
+        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
       >
-        { index }
+        { index + 1 }
       </td>
       <td
-        data-testid="customer_checkout__element-order-table-name-"
+        data-testid={ `customer_checkout__element-order-table-name-${index}` }
       >
         { name }
       </td>
       <td
-        data-testid="customer_checkout__element-order-table-quantity-"
+        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
       >
         { quantity }
       </td>
       <td
-        data-testid="customer_checkout__element-order-table-unit-price-"
+        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
       >
-        { (Math.round(price * 100) / 100).toFixed(2) }
+        { formatPrice(price) }
       </td>
       <td
-        data-testid="customer_checkout__element-order-table-sub-total-"
+        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
       >
-        { (Math.round(amountPrice * 100) / 100).toFixed(2) }
+        { formatPrice(amountPrice) }
       </td>
       <td
-        data-testid="customer_checkout__element-order-table-remove-"
+        data-testid={ `customer_checkout__element-order-table-remove-${index}` }
       >
         <button type="button" onClick={ () => onDelete(name) }>Remover</button>
       </td>
