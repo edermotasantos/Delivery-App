@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import CustomerOrderCard from '../../components/CustomerOrderCard';
+import Header from '../../components/Header';
 import SalesContext from '../../utils/SalesContext/SalesContext';
 
 function CustomerOrderPage() {
@@ -7,9 +8,9 @@ function CustomerOrderPage() {
 
   return (
     <>
-      <header>usar componente pronto</header>
+      <Header />
       <main>
-        {orders.map((order, index) => {
+        {orders.map((order) => {
           const {
             id,
             totalPrice,
@@ -22,7 +23,6 @@ function CustomerOrderPage() {
               orderNumber={ id }
               orderDate={ saleDate }
               total={ Number(totalPrice) }
-              index={ index }
               status={ status }
             />
           );

@@ -12,7 +12,7 @@ function OrderDetailTable({ products }) {
             `customer_order_details__element-order-table-item-number-${index}`
           }
         >
-          { index + 1 }
+          { index }
         </td>
         <td
           data-testid={ `customer_order_details__element-order-table-name-${index}` }
