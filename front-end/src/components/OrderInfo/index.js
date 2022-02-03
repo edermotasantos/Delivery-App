@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import dateFormater from '../../helpers/dateFormater';
 import './OrderInfo.css';
 
 const statusId = 'customer_order_details__element-order-details-label-delivery-status';
@@ -20,7 +21,7 @@ function OrderInfo({ orderId, seller, orderDate, status }) {
       <p
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        {orderDate}
+        {dateFormater(orderDate)}
       </p>
       <p
         data-testid={ statusId }
@@ -31,6 +32,7 @@ function OrderInfo({ orderId, seller, orderDate, status }) {
         data-testid="customer_order_details__button-delivery-check"
         type="button"
         onClick={ () => {} }
+        disabled
       >
         Marcar como Entregue
       </button>

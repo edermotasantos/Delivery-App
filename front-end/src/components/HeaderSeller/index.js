@@ -9,16 +9,10 @@ export default function Header() {
   return (
     <header>
       <Link
-        data-testid="customer_products__element-navbar-link-products"
-        to="/customer/products"
-      >
-        PRODUTOS
-      </Link>
-      <Link
         data-testid="customer_products__element-navbar-link-orders"
         to="/customer/orders"
       >
-        MEUS PEDIDOS
+        PEDIDOS
       </Link>
       <Link
         data-testid="customer_products__element-navbar-user-full-name"

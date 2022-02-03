@@ -4,6 +4,7 @@ import SalesContext from '../../utils/SalesContext/SalesContext';
 import OrderDetailTable from '../../components/OrderDetailTable';
 import OrderInfo from '../../components/OrderInfo';
 import Header from '../../components/Header';
+import priceFormater from '../../helpers/index';
 
 function CustomerOrderPageDetail() {
   const { id } = useParams();
@@ -35,7 +36,7 @@ function CustomerOrderPageDetail() {
           />
           <OrderDetailTable products={ products } />
           <div data-testid="customer_order_details__element-order-total-price">
-            {`Total: R$${(Math.round(totalPrice * 100) / 100).toFixed(2)}`}
+            { priceFormater(totalPrice) }
           </div>
         </main>
       </>
