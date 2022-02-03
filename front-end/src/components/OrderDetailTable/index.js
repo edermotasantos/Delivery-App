@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import priceFormater from '../../helpers/index';
 
 function OrderDetailTable({ products }) {
   const generateTableRow = (product, index) => {
@@ -12,7 +13,7 @@ function OrderDetailTable({ products }) {
             `customer_order_details__element-order-table-item-number-${index}`
           }
         >
-          { index }
+          { index + 1 }
         </td>
         <td
           data-testid={ `customer_order_details__element-order-table-name-${index}` }
@@ -27,12 +28,12 @@ function OrderDetailTable({ products }) {
         <td
           data-testid={ `customer_order_details__element-order-table-sub-total-${index}` }
         >
-          { (Math.round(price * 100) / 100).toFixed(2) }
+          { priceFormater(price) }
         </td>
         <td
           data-testid={ `customer_order_details__element-order-total-price-${index}` }
         >
-          { (Math.round(price * quantity * 100) / 100).toFixed(2) }
+          { priceFormater(price * quantity) }
         </td>
       </tr>
     );
