@@ -31,7 +31,7 @@ function SellerOrderCard({
           { dateFormater(orderDate) }
         </p>
         <p data-testid={ `seller_orders__element-card-price-${orderNumber}` }>
-          { priceFormater (total) }
+          { priceFormater(total) }
         </p>
       </div>
       <div>
