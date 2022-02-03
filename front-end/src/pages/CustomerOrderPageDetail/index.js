@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import SalesContext from '../../utils/SalesContext/SalesContext';
 import OrderDetailTable from '../../components/OrderDetailTable';
 import OrderInfo from '../../components/OrderInfo';
-import NavBar from '../../components/NavBar';
+import Header from '../../components/Header';
+import priceFormater from '../../helpers/index';
 
 function CustomerOrderPageDetail() {
   const { id } = useParams();
@@ -24,7 +25,7 @@ function CustomerOrderPageDetail() {
     } = orderById;
     return (
       <>
-        <NavBar />
+        <Header />
         <main>
           <h2>Detalhe do Pedido</h2>
           <OrderInfo
@@ -35,7 +36,7 @@ function CustomerOrderPageDetail() {
           />
           <OrderDetailTable products={ products } />
           <div data-testid="customer_order_details__element-order-total-price">
-            {`Total: R$${(Math.round(totalPrice * 100) / 100).toFixed(2)}`}
+            { priceFormater(totalPrice) }
           </div>
         </main>
       </>

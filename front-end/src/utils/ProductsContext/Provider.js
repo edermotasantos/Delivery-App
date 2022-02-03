@@ -5,17 +5,26 @@ import ContextProducts from './ProductsContext';
 
 export default function UserProvider({ children }) {
   const [products, setProducts] = useState([]);
-  const [count, setcount] = useState(0);
+  const [sellers, setSellers] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [shoppingCart, setShoppingCart] = useState([]);
+  const [productsQuantity, setProductsQuantity] = useState([]);
+  const [cart, setCart] = useState([]);
 
-  const fetchProducts = () => {
+  const fetchProducts = async () => {
     try {
-      axios.get('http://localhost:3001/products')
-        .then((res) => {
-          const { result } = res.data;
-          setProducts(result);
-        });
+      const { data } = await axios.get('http://localhost:3001/products');
+      setProducts(data);
+      setProductsQuantity(data.map((product) => ({ ...product, quantity: 0 })));
+    } catch (e) {
+      console.error(e.message);
+      return null;
+    }
+  };
+
+  const fetchSellers = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:3001/users/sellers');
+      setSellers(data);
     } catch (e) {
       console.error(e.message);
       return null;
@@ -24,69 +33,42 @@ export default function UserProvider({ children }) {
 
   useEffect(() => {
     fetchProducts();
+    fetchSellers();
     setTotalPrice(0);
   }, []);
 
-  const updateCartTotalPrice = () => {
-    let totalPriceValue = 0;
-    const cart = shoppingCart;
-    cart.map((item) => {
-      totalPriceValue += item.count * Number(item.price);
-      return totalPriceValue;
-    });
-    setTotalPrice(totalPriceValue);
+  const updateCart = (id, quantity) => {
+    setProductsQuantity(productsQuantity.map((item) => {
+      if (id === item.id) {
+        item.quantity = quantity;
+        return item;
+      }
+      return item;
+    }));
   };
 
-  const updateShoppingCart = (e) => {
-    const cart = shoppingCart;
-    if (cart.length > 0) {
-      if (cart.some((item) => item.id === products[e.target.id - 1].id)) {
-        cart.map((item, index) => {
-          if (item.id === products[e.target.id - 1].id) {
-            item.count = products[e.target.id - 1].count;
-            if (item.count === 0) {
-              cart.splice(index, 1);
-            }
-          }
-          return false;
-        });
-      } else cart.push(products[e.target.id - 1]);
-    } else cart.push(products[e.target.id - 1]);
-    setShoppingCart(cart);
-    localStorage.setItem('carrinho', JSON.stringify(shoppingCart));
-    updateCartTotalPrice();
-  };
+  useEffect(() => {
+    setCart(
+      productsQuantity.filter((product) => (product.quantity !== 0)),
+    );
+  }, [productsQuantity]);
 
-  const increment = (e) => {
-    const { id } = e.target;
-    products[id - 1].count += 1;
-    updateShoppingCart(e);
-    setcount(count + 1);
-  };
+  useEffect(() => {
+    const total = cart.reduce((acc, item) => (
+      acc + (item.quantity * Number(item.price))
+    ), 0);
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    products[id - 1].count = Number(value);
-    setcount(value);
-    updateShoppingCart(e);
-  };
-
-  const decrement = (e) => {
-    if (products[e.target.id - 1].count > 0) {
-      products[e.target.id - 1].count -= 1;
-      updateShoppingCart(e);
-      setCount(count - 1);
-    }
-  };
+    setTotalPrice(total);
+  }, [cart]);
 
   const context = {
-    count,
     products,
-    increment,
-    decrement,
-    handleChange,
+    updateCart,
+    cart,
     totalPrice,
     setTotalPrice,
+    setCart,
+    sellers,
   };
 
   return (

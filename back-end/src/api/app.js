@@ -14,6 +14,6 @@ app.use(require('./controllers/root'));
 
 app.use(err);
 
-app.use('/images', express.static(path.join(__dirname, '..', 'public', 'assets', 'images'))); 
+app.use('/images', express.static(path.join(__dirname, '..', '..', 'public'))); 
 
 module.exports = app;

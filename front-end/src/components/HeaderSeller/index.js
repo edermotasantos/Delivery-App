@@ -1,38 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function NavBar() {
+export default function Header() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const clearStorage = () => localStorage.removeItem('user');
 
   return (
-    <div>
-      <Link
-        data-testid="customer_products__element-navbar-link-products"
-        to="/products"
-      >
-        PRODUTOS
-      </Link>
+    <header>
       <Link
         data-testid="customer_products__element-navbar-link-orders"
         to="/customer/orders"
       >
-        MEUS PEDIDOS
+        PEDIDOS
       </Link>
       <Link
         data-testid="customer_products__element-navbar-user-full-name"
-        to="users/:id"
+        to="/login"
       >
         {user ? user.name : null}
       </Link>
       <Link
         data-testid="customer_products__element-navbar-link-logout"
         to="/login"
-        onClick={ () => clearStorage() }
+        onClick={ clearStorage }
       >
         Sair
       </Link>
-    </div>
+    </header>
   );
 }
