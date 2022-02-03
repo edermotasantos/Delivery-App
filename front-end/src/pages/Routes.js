@@ -9,6 +9,7 @@ import CustomerProducts from './CustomerProducts';
 import CustomerOrderPage from './CustomerOrderPage';
 import CustomerOrderPageDetail from './CustomerOrderPageDetail';
 import SellerOrderPage from './SellerOrderPage';
+import SellerOrderPageDetail from './SellerOrderPageDetail';
 
 export default function Rout() {
   return (
@@ -22,6 +23,7 @@ export default function Rout() {
       <Route path="/customer/orders" element={ <CustomerOrderPage /> } />
       <Route path="/customer/orders/:id" element={ <CustomerOrderPageDetail /> } />
       <Route path="/seller/orders" element={ <SellerOrderPage /> } />
+      <Route path="/seller/orders/:id" element={ <SellerOrderPageDetail /> } />
     </Routes>
   );
 }

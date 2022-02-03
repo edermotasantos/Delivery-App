@@ -28,3 +28,9 @@ export const registerCustomerUser = async (newUser) => {
     .catch((error) => error.response);
   return response.data;
 };
+
+export const getOrderById = async (id) => {
+  const response = await api.get(`/sales/${id}`)
+    .catch((error) => error.response);
+  return response.data;
+};

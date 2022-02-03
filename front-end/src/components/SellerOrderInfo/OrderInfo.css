@@ -1,0 +1,8 @@
+.geral-info-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.geral-info-container * {
+  margin: 0 5px;
+}
