@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import md5 from 'md5';
-import './styles/index.css';
 
 import { registerCustomerUser } from '../../services/endpointAPI';
 
@@ -51,11 +50,10 @@ function Register() {
 
   return (
     <main>
-      <div className="children_container">
+      <div>
         <form>
           <label htmlFor="name">
             <input
-              className="register-name"
               type="text"
               required
               minLength={ 12 }
@@ -67,7 +65,6 @@ function Register() {
           </label>
           <label htmlFor="email">
             <input
-              className="register-email"
               type="email"
               required
               placeholder="seu-email@site.com.br"
@@ -78,7 +75,6 @@ function Register() {
           </label>
           <label htmlFor="password">
             <input
-              className="register-password"
               type="password"
               required
               minLength={ 6 }
@@ -89,7 +85,6 @@ function Register() {
             />
           </label>
           <button
-            className="btn-register"
             type="button"
             data-testid="common_register__button-register"
             disabled={ formValidation }
@@ -99,7 +94,6 @@ function Register() {
           </button>
         </form>
         <p
-          className="error-message-login"
           data-testid="common_register__element-invalid_register"
           id="error"
           style={ { display: 'none' } }
