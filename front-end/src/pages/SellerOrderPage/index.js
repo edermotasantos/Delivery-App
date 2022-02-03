@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import HeaderSeller from '../../components/HeaderSeller';
 import SellerOrderCard from '../../components/SellerOrderCard';
 import SalesContext from '../../utils/SalesContext/SalesContext';
 
@@ -7,9 +8,9 @@ function SellerOrderPage() {
 
   return (
     <>
-      <header>usar componente pronto</header>
+      <HeaderSeller />
       <main>
-        {orders.map((order, index) => {
+        {orders.map((order) => {
           const {
             id,
             totalPrice,
@@ -24,7 +25,6 @@ function SellerOrderPage() {
               orderNumber={ id }
               orderDate={ saleDate }
               total={ Number(totalPrice) }
-              index={ index }
               status={ status }
               deliveryAddress={ deliveryAddress }
               deliveryNumber={ deliveryNumber }
