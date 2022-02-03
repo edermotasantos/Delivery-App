@@ -45,6 +45,13 @@ export default function Login() {
     validateFields();
   }, [email, password]);
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      navigate(urlByUserType[user.role]);
+    }
+  }, [navigate]);
+
   return (
     <div>
       <form>

@@ -22,7 +22,7 @@ export default function Header() {
       </Link>
       <Link
         data-testid="customer_products__element-navbar-user-full-name"
-        to="users/:id"
+        to="/login"
       >
         {user ? user.name : null}
       </Link>
