@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import dateFormater from '../../helpers/dateFormater';
+import priceFormater from '../../helpers/index';
 import './orderCard.css';
 
 function CustomerOrderCard({ orderNumber, status, orderDate, total }) {
@@ -23,7 +24,7 @@ function CustomerOrderCard({ orderNumber, status, orderDate, total }) {
           {dateFormater(orderDate)}
         </p>
         <p data-testid={ `customer_orders__element-card-price-${orderNumber}` }>
-          {`R$ ${(Math.round(total * 100) / 100).toFixed(2)}`}
+          {priceFormater(total)}
         </p>
       </div>
     </Link>
