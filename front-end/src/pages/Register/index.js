@@ -53,7 +53,6 @@ function Register() {
       <div>
         <form>
           <label htmlFor="name">
-            Nome
             <input
               type="text"
               required
@@ -65,7 +64,6 @@ function Register() {
             />
           </label>
           <label htmlFor="email">
-            Email
             <input
               type="email"
               required
@@ -76,7 +74,6 @@ function Register() {
             />
           </label>
           <label htmlFor="password">
-            Password
             <input
               type="password"
               required

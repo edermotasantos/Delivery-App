@@ -1,3 +1,79 @@
+.card-container {
+  align-items: center;
+  border-radius: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  margin-top: 30px;
+  padding: 10px;
+  width: 325px;
+}
+
+/* https://www.delftstack.com/pt/howto/css/resize-image-css/ */
 .card-image {
+  border-radius: 10px;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.cat {
+  height: 300px;
+  width: 300px;
+}
+
+.card-container:hover {
+  cursor: pointer;
+}
+
+.product-card-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 400px;
+}
+
+.card-title {
+  align-self: baseline;
+  background-color: rgb(11, 131, 17);
+  border-radius: 10px;
+  color: white;
+  padding: 3px 10px;
+}
+
+.counter-container {
+  display: flex;
+}
+
+.counter {
+  align-items: flex-end;
+  border: none;
+  text-align: center;
+  width: 90px;
+}
+
+.btn-decrement {
+  background-color: #157347;
+  border: none;
+  border-radius: 10px 0 0 10px;
+  color: white;
+  width: 40px;
+}
+
+.btn-increment {
+  background-color: #157347;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  color: white;
+  width: 40px;
+}
+
+.btn-increment:hover {
+  background-color: #2fc18c;
+}
+
+.btn-decrement:hover {
+  background-color: #2fc18c;
 }

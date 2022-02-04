@@ -33,15 +33,18 @@ const ProductCard = ({ id, price, urlImage, name }) => {
   };
 
   return (
-    <div key={ id }>
-      <div>
-        <img
-          className="card-image"
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
-          src={ urlImage }
-          alt={ name }
-        />
+    <div key={ id } className="card-container">
+      <div className="product-card-container">
+        <div className="cat">
+          <img
+            className="card-image"
+            data-testid={ `customer_products__img-card-bg-image-${id}` }
+            src={ urlImage }
+            alt={ name }
+          />
+        </div>
         <span
+          className="card-text"
           data-testid={ `customer_products__element-card-title-${id}` }
         >
           {name}
@@ -50,8 +53,9 @@ const ProductCard = ({ id, price, urlImage, name }) => {
           { formatPrice(price) }
         </span>
       </div>
-      <div>
+      <div className="counter-container">
         <button
+          className="btn-decrement"
           id={ id }
           type="button"
           onClick={ decrement }
@@ -60,6 +64,7 @@ const ProductCard = ({ id, price, urlImage, name }) => {
           -
         </button>
         <input
+          className="counter"
           id={ id }
           type="number"
           value={ quantity }
@@ -67,6 +72,7 @@ const ProductCard = ({ id, price, urlImage, name }) => {
           data-testid={ `customer_products__input-card-quantity--${id}` }
         />
         <button
+          className="btn-increment"
           id={ id }
           data-testid={ `customer_products__button-card-add-item--${id}` }
           type="button"
