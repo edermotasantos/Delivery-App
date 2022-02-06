@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+
 import dateFormater from '../../helpers/dateFormater';
+import { updateOrderStatus } from '../../services/endpointAPI';
+import SalesContext from '../../utils/SalesContext/SalesContext';
 import './OrderInfo.css';
 
 function SellerOrderInfo({ orderId, orderDate, status }) {
+  const [preparingDisabled, setPreparingDisabled] = useState(true);
+  const [dispatchDisabled, setDispatchDisabled] = useState(true);
+  const { socket } = useContext(SalesContext);
+
+  useEffect(() => {
+    if (status === 'Pendente') {
+      setPreparingDisabled(false);
+    } else {
+      setPreparingDisabled(true);
+    }
+
+    if (status === 'Preparando') {
+      setDispatchDisabled(false);
+    } else {
+      setDispatchDisabled(true);
+    }
+  }, [status]);
+
+  const updateStatus = (newStatus) => {
+    updateOrderStatus(newStatus, orderId);
+    socket.emit('updateStatus', { status: newStatus });
+  };
+
   return (
     <div className="geral-info-container">
       <p
@@ -24,15 +50,16 @@ function SellerOrderInfo({ orderId, orderDate, status }) {
       <button
         data-testid="seller_order_details__button-preparing-check"
         type="button"
-        onClick={ () => {} }
+        onClick={ () => updateStatus('Preparando') }
+        disabled={ preparingDisabled }
       >
         Preparar Pedido
       </button>
       <button
         data-testid="seller_order_details__button-dispatch-check"
         type="button"
-        onClick={ () => {} }
-        disabled
+        onClick={ () => updateStatus('Em Trânsito') }
+        disabled={ dispatchDisabled }
       >
         Saiu para Entrega
       </button>

@@ -11,7 +11,7 @@ function CustomerOrderCard({ orderNumber, status, orderDate, total }) {
       <div>
         <p>Pedido</p>
         <p data-testid={ `customer_orders__element-order-id-${orderNumber}` }>
-          {orderNumber }
+          {orderNumber}
         </p>
       </div>
       <div>

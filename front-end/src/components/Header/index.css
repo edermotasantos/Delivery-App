@@ -1,0 +1,11 @@
+.products-container {
+  background-color: grey;
+  height: 20px;
+  width: 100px;
+}
+
+.products-link {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}

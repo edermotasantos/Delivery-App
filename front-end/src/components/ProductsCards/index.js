@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ProductsContext from '../../utils/ProductsContext/ProductsContext';
 import ProductCard from '../ProductCard';
+import './index.css';
 
 const ProductsCards = () => {
   const {
@@ -8,7 +9,7 @@ const ProductsCards = () => {
   } = useContext(ProductsContext);
 
   return (
-    <>
+    <div className="cards-container">
       {
         products.map(({ id, price, urlImage, name }) => (
           <ProductCard
@@ -20,7 +21,7 @@ const ProductsCards = () => {
           />
         ))
       }
-    </>
+    </div>
   );
 };
 
