@@ -29,6 +29,18 @@ export const registerCustomerUser = async (newUser) => {
   return response.data;
 };
 
+export const updateOrderStatus = async (status, id) => {
+  await api.patch(
+    `sales/${id}`,
+    { status },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+};
+
 export const getOrderById = async (id) => {
   const response = await api.get(`/sales/${id}`)
     .catch((error) => error.response);

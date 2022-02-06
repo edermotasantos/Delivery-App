@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { updateOrderStatus } from '../../services/endpointAPI';
 import dateFormater from '../../helpers/dateFormater';
+import SalesContext from '../../utils/SalesContext/SalesContext';
 import './OrderInfo.css';
 
 const statusId = 'customer_order_details__element-order-details-label-delivery-status';
 
 function OrderInfo({ orderId, seller, orderDate, status }) {
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  const { socket } = useContext(SalesContext);
+
+  useEffect(() => {
+    if (status === 'Em Trânsito') {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [status]);
+
+  const updateStatus = () => {
+    updateOrderStatus('Entregue', orderId);
+    socket.emit('updateStatus', { status: 'Entregue' });
+  };
+
   return (
     <div className="geral-info-container">
       <p
@@ -31,8 +51,8 @@ function OrderInfo({ orderId, seller, orderDate, status }) {
       <button
         data-testid="customer_order_details__button-delivery-check"
         type="button"
-        onClick={ () => {} }
-        disabled
+        onClick={ updateStatus }
+        disabled={ buttonDisabled }
       >
         Marcar como Entregue
       </button>
